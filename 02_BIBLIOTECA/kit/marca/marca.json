@@ -1,0 +1,45 @@
+{
+  "_leia": "Dados da SUA marca. Troque os valores de exemplo antes do primeiro vídeo (texto de exemplo que ficar aqui aparece no vídeo). O card final do INSTAGRAM - PAPER VOX ANIMATION lê nome, profissao, credencial e handle direto daqui (lerMarca em 00_SISTEMA/motor/scripts/lib/mural.mjs). Nos outros formatos, o Claude copia estes valores para os parâmetros das camadas de marca (ver _onde_entra). Campo que não quiser mostrar: deixe \"\".",
+  "_onde_entra": {
+    "nome": "card final do PAPER VOX (palavras no degradê) · apresentacao-redes → nome",
+    "profissao": "card final do PAPER VOX (linha de apoio) · apresentacao-redes → cargo",
+    "credencial": "card final do PAPER VOX (\"\" = sem a linha) · apresentacao-redes → credencial (\"\" = sem o card da credencial)",
+    "credencialIcone": "apresentacao-redes → credencialIcone (nome de ícone do lucide-react; \"\" = sem ícone)",
+    "handle": "card final do PAPER VOX · encerramento-insta, encerramento-youtube e apresentacao-redes → arroba (o padrão das peças, sem arroba na camada, fica em 00_SISTEMA/motor/src/modelos/estilos.ts)",
+    "redes": "apresentacao-redes e encerramento-youtube → redes (lista com os valores de \"rede\"; aceitos: instagram, youtube, tiktok, spotify, whatsapp, threads, x, facebook, telegram)",
+    "textoEncerramento": "encerramento-insta → texto (linha serifada sob o @; \"\" = sem linha)",
+    "fonte": "par de fontes padrão (A = Instrument Serif itálica + Inter Tight; o TELA DIVIDIDA exige A)",
+    "paleta": "só referência: as cores que o motor usa moram em 00_SISTEMA/motor/src/modelos/estilos.ts (CUT e MIX) e src/modelos/paper-vox/elementos.tsx (PAPER VOX); trocar = mudança de motor, com regressões"
+  },
+  "nome": "Seu Nome",
+  "profissao": "sua profissão",
+  "credencial": "",
+  "credencialIcone": "badge-check",
+  "handle": "@seu_perfil",
+  "redes": [
+    {"rede": "instagram", "handle": "@seu_perfil"},
+    {"rede": "youtube", "handle": "@seu_perfil"}
+  ],
+  "textoEncerramento": "segue para mais",
+  "fonte": "A",
+  "paleta": {
+    "_sobre": "Paleta padrão do framework (troque pela sua).",
+    "acento": "#B90015",
+    "acentoProfundo": "#5E0E06",
+    "creme": "#F5F1EA",
+    "fundoEscuro": "#0E0C10",
+    "textoClaro": "#F2EFEA",
+    "degradesPaperVox": {
+      "salmao-vermelho": ["#F08C70", "#D9483A", "#B90015"],
+      "salmao-laranja": ["#F4A285", "#EC8257", "#E26934"],
+      "vermelho-laranja": ["#C21A1F", "#D95721", "#E9782F"]
+    }
+  },
+  "a_preencher": [
+    "nome de exibição (como aparece no card da marca)",
+    "profissão ou descrição curta (ex.: criador de conteúdo de culinária)",
+    "credencial opcional (registro profissional, título, selo)",
+    "@ principal e as outras redes (YouTube, TikTok...)",
+    "o @ padrão das peças de marca também fica em 00_SISTEMA/motor/src/modelos/estilos.ts (campo arroba, 2 linhas); ou passe arroba em cada camada"
+  ]
+}

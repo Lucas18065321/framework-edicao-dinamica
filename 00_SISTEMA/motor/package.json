@@ -1,0 +1,43 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@react-three/fiber": "^9.8.1",
+    "@remotion/animation-utils": "^4.0.532",
+    "@remotion/cli": "^4.0.532",
+    "@remotion/effects": "^4.0.532",
+    "@remotion/google-fonts": "^4.0.532",
+    "@remotion/layout-utils": "^4.0.532",
+    "@remotion/light-leaks": "^4.0.532",
+    "@remotion/lottie": "^4.0.532",
+    "@remotion/media": "^4.0.532",
+    "@remotion/media-utils": "^4.0.532",
+    "@remotion/motion-blur": "^4.0.532",
+    "@remotion/noise": "^4.0.532",
+    "@remotion/paths": "^4.0.532",
+    "@remotion/shapes": "^4.0.532",
+    "@remotion/three": "^4.0.532",
+    "@remotion/transitions": "^4.0.532",
+    "lottie-web": "^5.13.0",
+    "lucide-react": "^1.52.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.532",
+    "simple-icons": "^16.34.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "typescript": "^7.0.2"
+  }
+}

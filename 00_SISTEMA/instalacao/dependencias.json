@@ -1,0 +1,109 @@
+{
+  "_sobre": "O que o instalar.ps1 instala ou baixa (fica fora do Git). Versões testadas em 2026-10-23. sha256 null = não foi possível conferir pela origem: o instalador confere só o tamanho e avisa.",
+  "winget": [
+    {"id": "Git.Git", "comando": "git", "nota": "para clonar e atualizar o repositório"},
+    {"id": "OpenJS.NodeJS.LTS", "versao": "24.19.0", "comando": "node", "conferir": "v24.", "nota": "roda o motor (Remotion) e todos os scripts"},
+    {"id": "Gyan.FFmpeg", "versao": "9.0.2", "comando": "ffmpeg", "conferir": "ffmpeg version 9.", "nota": "build full do gyan.dev: traz os filtros whisper (transcrição local) e arnndn"},
+    {"id": "yt-dlp.yt-dlp", "comando": "yt-dlp", "opcional": true, "nota": "só para assistir referências por link (assistir.mjs com URL)"}
+  ],
+  "remotion": "4.0.532",
+  "downloads": [
+    {
+      "destino": "00_SISTEMA/modelos/ggml-small.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.bin",
+      "bytes": 487601967,
+      "sha256": "1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b",
+      "nota": "Whisper small: transcrição rápida do assistir.mjs"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/ggml-large-v3-turbo-q5_0.bin",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo-q5_0.bin",
+      "bytes": 574041195,
+      "sha256": "394221709cd5ad1f40c46e6031ca61bce88931e6e088c188294c6d5a55ffa7e2",
+      "nota": "Whisper large-v3-turbo: transcrição de alta qualidade (transcrever.mjs, alinhar-palavras.mjs, decupagem)"
+    },
+    {
+      "destino": "00_SISTEMA/ferramentas/deepfilternet/deep-filter.exe",
+      "url": "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-x86_64-pc-windows-msvc.exe",
+      "bytes": 26912256,
+      "sha256": "75e11fa16445f560cb6b021521ddb89e89270d13b83089705d98776f58fd7915",
+      "nota": "DeepFilterNet 0.5.6: redução de ruído do estudio-audio.mjs"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/ggml-silero-v5.1.2.bin",
+      "url": "https://huggingface.co/ggml-org/whisper-vad/resolve/main/ggml-silero-v5.1.2.bin",
+      "bytes": 885098,
+      "sha256": "29940d98d42b91fbd05ce489f3ecf7c72f0a42f027e4875919a28fb4c04ea2cf",
+      "opcional": true,
+      "nota": "Detector de voz Silero. Reserva: nenhum script atual usa. Nunca usar como vad_model no filtro whisper (fica ~19x mais lento)"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/rnnoise/bd.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/beguiling-drafter-2018-08-30/bd.rnnn",
+      "bytes": 299693,
+      "sha256": null,
+      "opcional": true,
+      "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/rnnoise/cb.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/conjoined-burgers-2018-08-28/cb.rnnn",
+      "bytes": 299741,
+      "sha256": null,
+      "opcional": true,
+      "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/rnnoise/lq.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/leavened-quisling-2018-08-31/lq.rnnn",
+      "bytes": 297041,
+      "sha256": null,
+      "opcional": true,
+      "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/rnnoise/mp.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/marathon-prescription-2018-08-29/mp.rnnn",
+      "bytes": 296861,
+      "sha256": null,
+      "opcional": true,
+      "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
+    },
+    {
+      "destino": "00_SISTEMA/modelos/rnnoise/sh.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/somnolent-hogwash-2018-09-01/sh.rnnn",
+      "bytes": 297646,
+      "sha256": null,
+      "opcional": true,
+      "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
+    }
+  ],
+  "sfx_sintetizados": ["whoosh_soft", "whoosh_fast", "swish_air", "click_soft", "pop_soft", "tick_micro", "riser_short", "impact_sub", "shimmer", "glitch", "reverse_swell"],
+  "pastas_vazias": [
+    "00_SISTEMA/modelos/rnnoise",
+    "00_SISTEMA/ferramentas/deepfilternet",
+    "00_SISTEMA/render-partes",
+    "00_SISTEMA/regressao",
+    "01_REFERENCIAS/modelos/_entrada",
+    "02_BIBLIOTECA/broll-reutilizavel",
+    "02_BIBLIOTECA/musicas",
+    "02_BIBLIOTECA/sfx",
+    "02_BIBLIOTECA/fontes",
+    "02_BIBLIOTECA/voz-referencia",
+    "05_LAB/sfx",
+    "05_LAB/testes",
+    "03_PROJETOS/_versoes-antigas",
+    "03_PROJETOS/_MODELO_PROJETO/01_bruto",
+    "03_PROJETOS/_MODELO_PROJETO/02_analise",
+    "03_PROJETOS/_MODELO_PROJETO/03_roteiro",
+    "03_PROJETOS/_MODELO_PROJETO/04_broll/banco",
+    "03_PROJETOS/_MODELO_PROJETO/04_broll/fotos",
+    "03_PROJETOS/_MODELO_PROJETO/04_broll/ia_flow",
+    "03_PROJETOS/_MODELO_PROJETO/04_broll/internet",
+    "03_PROJETOS/_MODELO_PROJETO/04_broll/meus",
+    "03_PROJETOS/_MODELO_PROJETO/05_audio/musica",
+    "03_PROJETOS/_MODELO_PROJETO/05_audio/sfx",
+    "03_PROJETOS/_MODELO_PROJETO/06_previas",
+    "03_PROJETOS/_MODELO_PROJETO/07_final"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "_leia": "Um piloto por modelo: o vídeo APROVADO que prova que o formato não mudou. projeto = pasta do projeto (relativa à raiz, ex.: 03_PROJETOS/2026-11-02_meu-video) ou null (sem piloto ainda). base = prefixo do mp4 de referência em 00_SISTEMA/regressao/ (trecho 1 = <base>.mp4, trecho 2 = <base>_2.mp4...). trechos = [inicio, fim] em segundos da saída. escala = miniatura da comparação por PSNR (null = só md5, exige quadros idênticos). limiar = PSNR mínimo em dB para EQUIVALENTE. Gravar: node scripts/vez.mjs node scripts/regressao.mjs [--cut|--mix] --gravar --projeto <pasta> (PAPER VOX: regressao-paper-vox.mjs). Ver README.md desta pasta.",
+  "tela-dividida-instagram": {
+    "projeto": null,
+    "base": "tela-dividida_base",
+    "trechos": [["0", "6"]],
+    "escala": null,
+    "limiar": null
+  },
+  "cut-dinamico-instagram": {
+    "projeto": null,
+    "base": "cut-dinamico_base",
+    "trechos": [["0", "5"]],
+    "escala": "135:240",
+    "limiar": 42
+  },
+  "mix-edit-youtube": {
+    "projeto": null,
+    "base": "mix-edit_base",
+    "trechos": [["0", "4"]],
+    "escala": "240:135",
+    "limiar": 42
+  },
+  "paper-vox-instagram": {
+    "projeto": null,
+    "base": "paper-vox_base",
+    "trechos": [["0", "4"]],
+    "escala": "135:240",
+    "limiar": 40
+  }
+}

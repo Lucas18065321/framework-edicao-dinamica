@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/00_SISTEMA/motor/scripts/validar-edicao.mjs\" --hook",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

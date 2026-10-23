@@ -1,0 +1,9 @@
+# Glossário pessoal da decupagem (lido por 00_SISTEMA/motor/scripts/decupar-inteligente.mjs).
+# Serve para o motor NÃO marcar como "⚠ palavra fora do dicionário" termos que você fala e que o dicionário
+# pt-BR não conhece: nomes de marcas, gírias, termos técnicos do seu nicho, palavras em inglês, siglas.
+# Formato: uma palavra por linha. Maiúsculas e acentos não importam. Linha que começa com # é comentário.
+# Para expressões, ponha cada palavra numa linha. Exemplos (apague o # para valer):
+# airfryer
+# mise
+# pomodoro
+# YouTube

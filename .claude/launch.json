@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ilha",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "00_SISTEMA/motor/scripts/ilha.mjs"
+      ],
+      "port": 3123,
+      "url": "http://127.0.0.1:3123"
+    }
+  ]
+}

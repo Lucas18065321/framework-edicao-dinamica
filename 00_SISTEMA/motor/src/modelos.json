@@ -1,0 +1,9 @@
+{
+  "padrao": "tela-dividida-instagram",
+  "modelos": {
+    "tela-dividida-instagram": {"nome": "INSTAGRAM - TELA DIVIDIDA", "composicao": "Edicao", "largura": 1080, "altura": 1920, "fps": 24, "gl": null, "congelado": true},
+    "cut-dinamico-instagram": {"nome": "INSTAGRAM - EDIÇÃO CUT DINÂMICO", "composicao": "CutDinamico", "largura": 1080, "altura": 1920, "fps": 24, "gl": "angle"},
+    "mix-edit-youtube": {"nome": "YOUTUBE - MIX EDIT", "composicao": "MixEdit", "largura": 1920, "altura": 1080, "fps": 30, "gl": "angle"},
+    "paper-vox-instagram": {"nome": "INSTAGRAM - PAPER VOX ANIMATION", "composicao": "PaperVox", "largura": 1080, "altura": 1920, "fps": 24, "gl": "angle"}
+  }
+}

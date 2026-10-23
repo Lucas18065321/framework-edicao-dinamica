@@ -1,0 +1,3 @@
+# Guardar todos os arquivos exatamente como estão (sem converter fim de linha).
+# Os .ps1 e .bat do instalador precisam de CRLF; os scripts Node funcionam com qualquer um.
+* -text

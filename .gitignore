@@ -1,0 +1,86 @@
+# Framework de Edição Dinâmica: no Git vai só a ferramenta (código, regras, guias, docs).
+# Nada de vídeo, chave, modelo baixado ou mídia de terceiros.
+
+# --- Projetos de vídeo (brutos, prévias, finais: privados e grandes). Só o modelo vazio vai para o Git.
+03_PROJETOS/*
+!03_PROJETOS/_MODELO_PROJETO/
+
+# --- Segredos (as chaves vão pelo Bloco de Notas no .env; o modelo é o .env.example)
+.env
+.env.*
+!.env.example
+00_SISTEMA/motor/gen-ledger.json
+# permissões e ajustes locais do Claude Code (pessoais; o .claude/settings.json com o hook vai para o Git)
+.claude/settings.local.json
+
+# --- Reinstaláveis (o instalador baixa e confere o sha256)
+node_modules/
+00_SISTEMA/modelos/
+00_SISTEMA/ferramentas/deepfilternet/
+00_SISTEMA/ferramentas/whisper-cpp/
+
+# --- Render, fila e caches
+00_SISTEMA/render-partes/
+00_SISTEMA/.fila-render/
+00_SISTEMA/_ARQUIVO/
+_ARQUIVO/
+00_SISTEMA/motor/public/
+00_SISTEMA/motor/testes-pub/
+00_SISTEMA/motor/out/
+.remotion/
+.props-render-*.json
+*.baixando
+*.tmp
+*.log
+
+# --- Referências de regressão (geradas a partir dos SEUS pilotos)
+00_SISTEMA/regressao/*.mp4
+
+# --- Vídeos de referência de terceiros e as análises deles (só na sua máquina)
+01_REFERENCIAS/modelos/_entrada/
+01_REFERENCIAS/modelos/*/videos/
+01_REFERENCIAS/modelos/*/analises/
+01_REFERENCIAS/modelos/*/previas/
+
+# --- Mídia em 02_BIBLIOTECA e 05_LAB/sfx (licenças de terceiros não permitem redistribuir).
+#     Ficam só os README.md, os catálogos em texto e o kit (KIT.md + marca.json).
+02_BIBLIOTECA/broll-reutilizavel/**
+!02_BIBLIOTECA/broll-reutilizavel/*.md
+02_BIBLIOTECA/musicas/**
+!02_BIBLIOTECA/musicas/*.md
+02_BIBLIOTECA/sfx/**
+!02_BIBLIOTECA/sfx/*.md
+02_BIBLIOTECA/fontes/**
+!02_BIBLIOTECA/fontes/*.md
+02_BIBLIOTECA/voz-referencia/**
+!02_BIBLIOTECA/voz-referencia/*.md
+02_BIBLIOTECA/kit/clipes/
+02_BIBLIOTECA/kit/previas/
+05_LAB/sfx/**
+!05_LAB/sfx/README.md
+!05_LAB/sfx/catalogo.json
+05_LAB/testes/
+
+# --- Rede de segurança: vídeo e áudio em qualquer outro lugar
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.mkv
+*.webm
+*.avi
+*.mp3
+*.wav
+*.m4a
+*.oga
+*.ogg
+*.flac
+*.aac
+
+# --- Pasta de apoio da preparação (não publicar)
+_ORIGINAL-PARA-CONSULTA/
+
+# --- Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
