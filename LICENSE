@@ -19,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Esta licença vale para o código e a documentação deste repositório. Ferramentas de
-terceiros que o instalador baixa (Remotion, FFmpeg, Whisper, DeepFilterNet e outras)
-têm licenças próprias: veja LICENCAS.md. A licença do Remotion pode exigir compra
-para empresas maiores.
