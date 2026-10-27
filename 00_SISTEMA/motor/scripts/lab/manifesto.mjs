@@ -53,7 +53,7 @@ const sha = (p) => crypto.createHash('sha256').update(fs.readFileSync(p)).digest
 const versoes = () => {
 	const ff = spawnSync('ffmpeg', ['-version'], {encoding: 'utf8'}).stdout?.split(/\r?\n/)[0] ?? '?';
 	const hs = path.join(MOTOR, 'node_modules', '.remotion', 'chrome-headless-shell', 'VERSION');
-	const chromeDir = 'C:/Program Files/Google/Chrome/Application';
+	const chromeDir = process.platform === 'win32' ? 'C:/Program Files/Google/Chrome/Application' : '/nao-existe';
 	const chrome = fs.existsSync(chromeDir) ? fs.readdirSync(chromeDir).filter((d) => /^\d+\.\d+\.\d+\.\d+$/.test(d)).sort() : [];
 	const pkg = (n) => {
 		try {

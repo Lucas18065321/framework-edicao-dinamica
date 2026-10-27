@@ -59,4 +59,6 @@ node scripts/vez.mjs node scripts/regressao-paper-vox.mjs
 - **CUT DINÂMICO e MIX EDIT** (`limiar: 42`): o motor de camadas decodifica o vídeo da pessoa no navegador, e dois renders do mesmo código já diferem por ruído. Por isso a comparação é por PSNR numa miniatura (135×240 no 9:16, 240×135 no 16:9). Medido: contraste +1% dá 42,5 dB; deslocar 4 px dá 26 dB.
 - **PAPER VOX ANIMATION** (`limiar: 40`): o ruído da GPU e da trama do papel dá PSNR mínimo ≥ 42 dB. Uma palavra pequena trocada de cor dá 38,6 dB; deslocar 2 px dá 25 dB.
 
+Os limiares acima (42 e 40 dB) foram medidos no Windows. No Mac, grave o piloto de cada formato no próprio Mac (`--gravar`) e nunca compare com referência gravada em outro sistema.
+
 O limiar vale para o seu computador. Se a sua máquina der ruído maior (EQUIVALENTE falhando sem mudança nenhuma), meça dois renders do mesmo código antes de baixar o limiar.

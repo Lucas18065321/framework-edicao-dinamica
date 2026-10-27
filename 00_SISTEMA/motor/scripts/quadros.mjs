@@ -9,6 +9,7 @@ import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {binariosRemotion} from './lib/binarios.mjs';
+import {fonteArquivo} from './lib/fonte.mjs';
 
 const MOTOR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -65,8 +66,8 @@ if (feitos.length) {
 	const cols = Math.min(2, feitos.length);
 	const linhas = Math.ceil(feitos.length / cols);
 	const entradas = feitos.flatMap((f) => ['-i', path.basename(f)]);
-	// rótulo com o tempo: o drawtext do FFmpeg do Windows precisa do arquivo da fonte (sem fontconfig), por caminho relativo
-	const arial = path.join(process.env.WINDIR ?? 'C:\\Windows', 'Fonts', 'arial.ttf');
+	// rótulo com o tempo: o drawtext do FFmpeg (Windows e macOS) precisa do arquivo da fonte (sem fontconfig), por caminho relativo
+	const arial = fonteArquivo();
 	const rotulo = (i) => (fs.existsSync(arial) ? `,drawtext=fontfile='${path.relative(pasta, arial).split(path.sep).join('/')}':text='${path.basename(feitos[i], '.png').slice(2).replace('_', ',')} s':x=12:y=12:fontsize=28:fontcolor=white:box=1:boxcolor=black@0.6` : '');
 	const escala = feitos.map((_, i) => `[${i}:v]scale=960:-2${rotulo(i)}[v${i}]`).join(';');
 	const vazio = Array.from({length: cols * linhas - feitos.length}, (_, k) => `color=black:s=960x540:d=1[e${k}]`).join(';');

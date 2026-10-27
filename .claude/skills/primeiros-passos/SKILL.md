@@ -14,11 +14,11 @@ Rode as checagens abaixo **sem instalar nada** e mostre uma tabela curta `item �
 | Item | Como conferir | Esperado |
 |---|---|---|
 | Node.js | `node -v` | `v24.…` (a versão do instalador) |
-| FFmpeg | `ffmpeg -hide_banner -version` (1ª linha) | build "full" (no Windows, o do gyan.dev) |
+| FFmpeg | `ffmpeg -hide_banner -version` (1ª linha) | build "full" (Windows: gyan.dev; macOS: Homebrew) |
 | Transcrição local | `ffmpeg -hide_banner -filters` contém `whisper` | presente |
 | Redução de ruído | o mesmo comando contém `arnndn` | presente |
 | Modelos do Whisper | `00_SISTEMA/modelos/ggml-small.bin` (~488 MB) e `ggml-large-v3-turbo-q5_0.bin` (~574 MB) | os dois existem |
-| DeepFilterNet (limpeza de voz) | `00_SISTEMA/ferramentas/deepfilternet/deep-filter.exe --version` (no Linux, ver `docs/07-LINUX.md`) | `0.5.6` |
+| DeepFilterNet (limpeza de voz) | `00_SISTEMA/ferramentas/deepfilternet/deep-filter --version` (no Windows, `deep-filter.exe`; Linux: `docs/07-LINUX.md`) | `0.5.6` |
 | Pacotes do motor | existe `00_SISTEMA/motor/node_modules/remotion` | existe |
 | Chaves (.env) | existe `00_SISTEMA/motor/.env`; conte as chaves preenchidas com `grep -cE '^\s*(GEMINI|PEXELS|PIXABAY)_API_KEY\s*=\s*\S+' 00_SISTEMA/motor/.env` | 0 a 3 (todas opcionais) |
 | SFX básicos | `02_BIBLIOTECA/sfx/*.wav` (11 sintetizados pelo instalador) | 11 arquivos |
@@ -27,8 +27,8 @@ Rode as checagens abaixo **sem instalar nada** e mostre uma tabela curta `item �
 | Opcionais | `yt-dlp --version` (baixar referências por link); Chrome com a extensão Claude in Chrome (gerar imagens no Google Flow) | AVISO se faltar |
 
 Regras desta etapa:
-- **Nunca mostre o conteúdo do `.env`** nem peça chave no chat. Para preencher, abra o arquivo no Bloco de Notas para o usuário (`notepad 00_SISTEMA/motor/.env`) e peça que ele cole, salve e feche. O mesmo vale para o `marca.json`.
-- Faltou algo obrigatório (Node, FFmpeg com whisper, modelos, pacotes do motor)? Explique em 1 linha e ofereça rodar o instalador de novo: `00_SISTEMA/instalacao/INSTALAR.bat` (duplo clique) ou, para você rodar, `powershell -NoProfile -ExecutionPolicy Bypass -File 00_SISTEMA/instalacao/instalar.ps1 -SemPerguntas`. ⏸ Peça autorização antes: ele baixa e instala programas e modelos (mais de 1 GB). Passo a passo e problemas comuns: `docs/01-INSTALAR.md`. Linux: `docs/07-LINUX.md`.
+- **Nunca mostre o conteúdo do `.env`** nem peça chave no chat. Para preencher, abra o arquivo para o usuário (Windows: `notepad 00_SISTEMA/motor/.env`; macOS: `open -e 00_SISTEMA/motor/.env`) e peça que ele cole, salve e feche. O mesmo vale para o `marca.json`.
+- Faltou algo obrigatório (Node, FFmpeg com whisper, modelos, pacotes do motor)? Explique em 1 linha e ofereça rodar o instalador de novo: `00_SISTEMA/instalacao/INSTALAR.bat` (duplo clique) ou, para você rodar, `powershell -NoProfile -ExecutionPolicy Bypass -File 00_SISTEMA/instalacao/instalar.ps1 -SemPerguntas`. No macOS: `bash 00_SISTEMA/instalacao/instalar.sh` (guia `docs/01-INSTALAR-MAC.md`). ⏸ Peça autorização antes: ele baixa e instala programas e modelos (mais de 1 GB). Passo a passo e problemas comuns: `docs/01-INSTALAR.md`. Linux: `docs/07-LINUX.md`.
 - Chaves: sem Pexels/Pixabay, o banco de vídeos gratuito não funciona (imagens ainda podem vir do Openverse). A chave do Gemini é só para gerar imagem ou vídeo pela API (`scripts/gen.mjs`, com teto de gasto). Detalhes: `docs/03-IMAGENS-E-BROLL.md`.
 
 ## 2. Como eu trabalho (explique assim, com analogia)
@@ -68,7 +68,7 @@ Leia `01_REFERENCIAS/modelos/MODELOS.md` e resuma os formatos em 1 linha cada, c
 Na dúvida: onde vai postar? Você aparece no vídeo? É curto ou longo?
 
 ## 5. Sua marca
-- Abra `02_BIBLIOTECA/kit/marca/marca.json` no Bloco de Notas para ele (`notepad 02_BIBLIOTECA/kit/marca/marca.json`) e explique os campos: `nome` (como aparece no card), `profissao` (descrição curta), `credencial` (opcional: registro, título ou selo; vazio = sem), `handle` (o seu @ principal) e `redes` (cada rede com o @ dela). Troque só os textos de exemplo, mantendo aspas e vírgulas, e confira depois que o arquivo continua válido (ex.: `node -e "JSON.parse(require('fs').readFileSync('02_BIBLIOTECA/kit/marca/marca.json','utf8'))"`).
+- Abra `02_BIBLIOTECA/kit/marca/marca.json` para ele (Windows: `notepad 02_BIBLIOTECA/kit/marca/marca.json`; macOS: `open -e 02_BIBLIOTECA/kit/marca/marca.json`) e explique os campos: `nome` (como aparece no card), `profissao` (descrição curta), `credencial` (opcional: registro, título ou selo; vazio = sem), `handle` (o seu @ principal) e `redes` (cada rede com o @ dela). Troque só os textos de exemplo, mantendo aspas e vírgulas, e confira depois que o arquivo continua válido. No TextEdit (`open -e`), desligue Editar → Substituições → Aspas inteligentes (e Travessões inteligentes) antes de editar o `marca.json`, senão o JSON quebra (ex.: `node -e "JSON.parse(require('fs').readFileSync('02_BIBLIOTECA/kit/marca/marca.json','utf8'))"`).
 - Onde isso aparece: no card final do PAPER VOX (lido direto do arquivo) e nas peças de apresentação e encerramento dos outros formatos (eu copio os valores para cada peça). O `@seu_perfil` que existe no código (`estilos.ts`) é só o padrão de reserva.
 - A paleta padrão do framework (carmim `#B90015`, degradês salmão, vermelho e laranja, fundos `#0E0C10` e `#F2EFEA`) e as fontes (Instrument Serif itálica + Inter Tight) vêm prontas. Trocar cores ou fontes dos formatos é mudança de motor: peça e eu faço com as regressões.
 - Preferências pessoais (tom, volume da música, o que nunca fazer, regras da sua profissão) vão na seção "Preferências do usuário" do `CLAUDE.md`. Os valores que estão lá são o padrão sugerido: ajuste ao seu gosto.

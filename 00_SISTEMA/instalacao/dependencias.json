@@ -7,6 +7,19 @@
     {"id": "yt-dlp.yt-dlp", "comando": "yt-dlp", "opcional": true, "nota": "só para assistir referências por link (assistir.mjs com URL)"}
   ],
   "remotion": "4.0.532",
+  "deepfilternet_unix": {
+    "_sobre": "Binários do DeepFilterNet 0.5.6 para macOS/Linux (usados pelo instalar.sh; o instalar.ps1 ignora esta chave). Destino: 00_SISTEMA/ferramentas/deepfilternet/deep-filter. Os sha256 de darwin foram medidos em 2026-10-26 (a origem não publica); os de linux seguem sem sha256 (null): o instalar.sh não baixa nem executa esses binários e só avisa (o estúdio de áudio usa o afftdn do FFmpeg).",
+    "darwin-arm64": {"url": "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-aarch64-apple-darwin", "bytes": 27877081, "sha256": "4601e7f4e4c03e59a4c5b5000216ef3add3e808799cfccd95e14e83ea4611081"},
+    "darwin-x64": {"url": "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-x86_64-apple-darwin", "bytes": 29933512, "sha256": "d3be84003acb7c23e738ad7f70a158ec779a8d233a82e7fa3e717d112eb5b50f"},
+    "linux-x64": {"url": "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-x86_64-unknown-linux-musl", "bytes": 36417296, "sha256": null},
+    "linux-arm64": {"url": "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-aarch64-unknown-linux-gnu", "bytes": 39238496, "sha256": null}
+  },
+  "brew": [
+    {"formula": "node@24", "comando": "node", "conferir": "v24.", "nota": "roda o motor (Remotion) e todos os scripts"},
+    {"formula": "ffmpeg", "comando": "ffmpeg", "conferir": "ffmpeg version 9.", "nota": "Homebrew: já traz o filtro whisper e o arnndn"},
+    {"formula": "git", "comando": "git", "nota": "para clonar e atualizar o repositório"},
+    {"formula": "yt-dlp", "comando": "yt-dlp", "opcional": true, "nota": "só para assistir referências por link"}
+  ],
   "downloads": [
     {
       "destino": "00_SISTEMA/modelos/ggml-small.bin",
@@ -39,41 +52,41 @@
     },
     {
       "destino": "00_SISTEMA/modelos/rnnoise/bd.rnnn",
-      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/beguiling-drafter-2018-08-30/bd.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/3eee541a283fd3b8f81b85b1748e3b9ccbefa04d/beguiling-drafter-2018-08-30/bd.rnnn",
       "bytes": 299693,
-      "sha256": null,
+      "sha256": "ae3f7411e1e6a884f839a4a145c394408398f09854dbc1216ee02faafc98a17b",
       "opcional": true,
       "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
     },
     {
       "destino": "00_SISTEMA/modelos/rnnoise/cb.rnnn",
-      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/conjoined-burgers-2018-08-28/cb.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/3eee541a283fd3b8f81b85b1748e3b9ccbefa04d/conjoined-burgers-2018-08-28/cb.rnnn",
       "bytes": 299741,
-      "sha256": null,
+      "sha256": "f1357c4e5be9dee8467bead486dfced2d75b640c26ad0b594fa7f102322371d9",
       "opcional": true,
       "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
     },
     {
       "destino": "00_SISTEMA/modelos/rnnoise/lq.rnnn",
-      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/leavened-quisling-2018-08-31/lq.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/3eee541a283fd3b8f81b85b1748e3b9ccbefa04d/leavened-quisling-2018-08-31/lq.rnnn",
       "bytes": 297041,
-      "sha256": null,
+      "sha256": "1957528b752799fddf06270bc5469af7cf54c3badc358544ae2abed730943ff9",
       "opcional": true,
       "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
     },
     {
       "destino": "00_SISTEMA/modelos/rnnoise/mp.rnnn",
-      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/marathon-prescription-2018-08-29/mp.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/3eee541a283fd3b8f81b85b1748e3b9ccbefa04d/marathon-prescription-2018-08-29/mp.rnnn",
       "bytes": 296861,
-      "sha256": null,
+      "sha256": "4e84a448a4baf937992aaf4d10c8258007ec5d24219b6647dfd5fb4b563ad231",
       "opcional": true,
       "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
     },
     {
       "destino": "00_SISTEMA/modelos/rnnoise/sh.rnnn",
-      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/master/somnolent-hogwash-2018-09-01/sh.rnnn",
+      "url": "https://raw.githubusercontent.com/GregorR/rnnoise-models/3eee541a283fd3b8f81b85b1748e3b9ccbefa04d/somnolent-hogwash-2018-09-01/sh.rnnn",
       "bytes": 297646,
-      "sha256": null,
+      "sha256": "70bb6685eb0c2a1d18e2918dca3fbfbd39317010b1802eb1b6ea73a92f3fdec0",
       "opcional": true,
       "nota": "Modelo RNNoise para o filtro arnndn do FFmpeg (uso manual; nenhum script atual usa)"
     }

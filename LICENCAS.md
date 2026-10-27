@@ -25,10 +25,12 @@ Pacotes `@remotion/*` usados: `cli`, `media`, `media-utils`, `google-fonts`, `th
 | Programa | Licença | Observação |
 |---|---|---|
 | **FFmpeg** (build "full" do gyan.dev, via winget) | GPL v3 (o build full inclui componentes GPL) | Usado como programa externo. Fonte e licenças: ffmpeg.org e gyan.dev. |
+| **FFmpeg** (fórmula `ffmpeg` do Homebrew, no macOS) | GPL-3.0-or-later (campo de licença da fórmula, formulae.brew.sh) | Usado como programa externo. |
+| **Homebrew** (no macOS) | BSD 2-Clause (repositório `Homebrew/brew`) | Gerenciador de pacotes. Se faltar, o instalador oferece instalá-lo com o script oficial, só com o seu `s` ou com `--instalar-homebrew`. |
 | **whisper.cpp** (embutido no FFmpeg, filtro `whisper`) | MIT | — |
-| **Node.js** | MIT | — |
+| **Node.js** (winget no Windows, fórmula `node@24` no macOS) | MIT | — |
 | **Git** | GPL v2 | — |
-| **yt-dlp** (opcional) | Unlicense | Use só para baixar material que você tem direito de usar. |
+| **yt-dlp** (opcional; winget ou Homebrew) | Unlicense | Use só para baixar material que você tem direito de usar. |
 | **Chrome Headless Shell** (baixado pelo `npx remotion browser ensure`) | licenças do Chromium (BSD e outras) | — |
 
 ## Modelos e ferramentas baixados pelo instalador
@@ -37,7 +39,7 @@ Pacotes `@remotion/*` usados: `cli`, `media`, `media-utils`, `google-fonts`, `th
 |---|---|---|
 | `ggml-small.bin`, `ggml-large-v3-turbo-q5_0.bin` | Hugging Face `ggerganov/whisper.cpp` (pesos do Whisper, da OpenAI, convertidos) | MIT |
 | `ggml-silero-v5.1.2.bin` (opcional) | Hugging Face `ggml-org/whisper-vad` (Silero VAD) | MIT |
-| `deep-filter.exe` 0.5.6 | GitHub `Rikorose/DeepFilterNet` | MIT ou Apache-2.0 (à sua escolha) |
+| `deep-filter.exe` 0.5.6 (Windows) e `deep-filter` 0.5.6 (macOS, binário `apple-darwin`) | GitHub `Rikorose/DeepFilterNet` | MIT ou Apache-2.0 (à sua escolha) |
 | `bd/cb/lq/mp/sh.rnnn` (opcional) | GitHub `GregorR/rnnoise-models` | conforme o repositório de origem: confira lá |
 
 ## Ferramenta baixada no primeiro uso

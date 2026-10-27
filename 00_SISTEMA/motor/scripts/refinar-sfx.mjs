@@ -14,6 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {pontosDoSom, RAIZ} from './lib/mural.mjs';
+import {fonteFiltro} from './lib/fonte.mjs';
 
 const args = process.argv.slice(2);
 const opcao = (nome, padrao = null) => (args.includes(nome) ? args[args.indexOf(nome) + 1] : padrao);
@@ -81,7 +82,7 @@ if (video) {
 	const vid = path.resolve(proj, video);
 	const durV = Number(spawnSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', vid], {encoding: 'utf8'}).stdout) || 0;
 	const W = Number(spawnSync('ffprobe', ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=p=0', vid], {encoding: 'utf8'}).stdout) || 540;
-	const fonte = 'C\\:/Windows/Fonts/arial.ttf';
+	const fonte = fonteFiltro();
 	const limpo = (t) => String(t).replace(/[\\'":%,;[\]=]/g, ' ').replace(/\s+/g, ' ').trim();
 	const partes = [], rot = [];
 	sfx.forEach((s, i) => {

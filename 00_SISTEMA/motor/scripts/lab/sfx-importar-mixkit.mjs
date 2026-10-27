@@ -47,7 +47,8 @@ console.log(`[mixkit] ${porId.size} da seleção encontrados; ★ que faltam: ${
 if (!process.argv.includes('--manter')) {
 	for (const x of achados) {
 		const p = path.join(pasta, x.f).replace(/'/g, "''");
-		spawnSync('powershell', ['-NoProfile', '-Command', `Add-Type -AssemblyName Microsoft.VisualBasic; [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile('${p}','OnlyErrorDialogs','SendToRecycleBin')`]);
+		if (process.platform === 'win32') spawnSync('powershell', ['-NoProfile', '-Command', `Add-Type -AssemblyName Microsoft.VisualBasic; [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile('${p}','OnlyErrorDialogs','SendToRecycleBin')`]);
+		else spawnSync('osascript', ['-e', 'on run a', '-e', 'tell application "Finder" to delete (POSIX file (item 1 of a))', '-e', 'end run', path.join(pasta, x.f)]); // caminho como argumento, nunca dentro do código
 	}
 	console.log(`[mixkit] ${achados.length} originais de Downloads foram para a Lixeira`);
 }

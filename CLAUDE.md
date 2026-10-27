@@ -23,7 +23,7 @@ O detalhe e o porquê de cada uma estão em `docs/05-REGRAS-IMUTAVEIS.md`.
 
 ## Como salvar o trabalho (git)
 - Cada usuário versiona **o próprio fork** do repositório. O que vai para o git: código do motor, guias, kit, catálogos, `marca.json`, glossário e as regras/aprendizados que o usuário quiser guardar.
-- **Nunca suba:** `03_PROJETOS/` (brutos, renders, projetos; só o `_MODELO_PROJETO` vazio vai), `00_SISTEMA/motor/.env` (chaves de API), `node_modules/`, os modelos do Whisper (`00_SISTEMA/modelos/`), o `deep-filter.exe`, as referências de regressão (`00_SISTEMA/regressao/*.mp4`), a voz de referência, nem mídia de terceiros (B-roll, músicas, SFX baixados, vídeos de referência e as análises deles). O `.gitignore` da raiz já cobre esses casos; mesmo assim, antes de cada commit confira com `git status` que nada disso entrou.
+- **Nunca suba:** `03_PROJETOS/` (brutos, renders, projetos; só o `_MODELO_PROJETO` vazio vai), `00_SISTEMA/motor/.env` (chaves de API), `node_modules/`, os modelos do Whisper (`00_SISTEMA/modelos/`), o `deep-filter.exe` (e o `deep-filter` do macOS), as referências de regressão (`00_SISTEMA/regressao/*.mp4`), a voz de referência, nem mídia de terceiros (B-roll, músicas, SFX baixados, vídeos de referência e as análises deles). O `.gitignore` da raiz já cobre esses casos; mesmo assim, antes de cada commit confira com `git status` que nada disso entrou.
 - O Claude só faz commit ou push quando o usuário pedir. Mensagem de commit em português, curta.
 - Projetos (brutos e finais) têm backup fora do git (HD externo ou nuvem do usuário).
 
@@ -61,8 +61,8 @@ Estes são os padrões com que o framework foi treinado. O usuário pode mudar q
 ## Pastas
 - `00_SISTEMA/motor`: projeto Remotion + scripts (Node). `src/modelos.json` diz composição, tamanho, fps e `gl` de cada formato.
 - `00_SISTEMA/modelos`: modelos do Whisper (`ggml-small.bin` e `ggml-large-v3-turbo-q5_0.bin`), baixados pelo instalador.
-- `00_SISTEMA/ferramentas`: `dicionario-ptbr/` (verificação de palavra quebrada), `glossario.txt` (termos e nomes do nicho do usuário, um por linha) e `deepfilternet/deep-filter.exe` (baixado pelo instalador).
-- `00_SISTEMA/instalacao`: `INSTALAR.bat`, `instalar.ps1`, `dependencias.json`.
+- `00_SISTEMA/ferramentas`: `dicionario-ptbr/` (verificação de palavra quebrada), `glossario.txt` (termos e nomes do nicho do usuário, um por linha) e `deepfilternet/deep-filter.exe` (`deep-filter` no macOS), baixado pelo instalador.
+- `00_SISTEMA/instalacao`: `INSTALAR.bat`, `instalar.ps1` (Windows), `instalar.sh`, `INSTALAR.command` (macOS), `dependencias.json`.
 - `00_SISTEMA/regressao`: referências das regressões e `README.md` (como eleger os pilotos).
 - `01_REFERENCIAS/modelos/<id>/`: um por formato (`guia-de-estilo.md`, `videos/` de referência, `analises/`, `previas/`). Registro: `MODELOS.md`. Referências novas que ainda não têm formato: `01_REFERENCIAS/modelos/_entrada/`. Vídeos de referência e análises deles não vão para o git.
 - `02_BIBLIOTECA`: `sfx/` (11 sons sintetizados por `scripts/synth-sfx.mjs` + pacote **Motionix** em `sfx/motionix/<categoria>/`, de terceiros, não incluído), `musicas/` (trilhas aprovadas reutilizáveis), `broll-reutilizavel/` + `catalogo.json`, `voz-referencia/` (opcional: a voz tratada que o usuário aprova, usada pelo estúdio de áudio), `kit/` (peças fixas de motion e marca, catálogo `kit/KIT.md`, dados da marca em `kit/marca/marca.json`). As pastas de mídia têm um `README.md` dizendo o que colocar; a mídia fica fora do git (`.gitignore`).
@@ -122,7 +122,7 @@ Estes são os padrões com que o framework foi treinado. O usuário pode mudar q
   - **Conteúdo e tom são do usuário:** a decupagem tira erro de gravação (tentativa, retomada, gaguejo), não opinião. Frase forte é escolha dele; corte de conteúdo só o que ele apontar.
 - **Estúdio de áudio:** `node scripts/estudio-audio.mjs <proj> [--referencia <arquivo>] [--escolher equilibrado]`.
   - Diagnóstico medido: estouro, ruído nas pausas e espectro por faixa contra a voz de referência (uma gravação do próprio usuário com o timbre que ele aprova). Referência: `--referencia <arquivo>`; sem ele, o 1º áudio/vídeo da pasta opcional `02_BIBLIOTECA/voz-referencia/`; sem nenhum dos dois, a própria voz do projeto (a EQ casada fica neutra). Sugira ao usuário guardar lá uma voz tratada de que ele goste.
-  - Cadeia (cada etapa só entra se o diagnóstico pedir): passa-alta 70 Hz → desestouro (`adeclip`) → DeepFilterNet (`00_SISTEMA/ferramentas/deepfilternet/deep-filter.exe`, teto de 12 dB; ou `afftdn` leve) → EQ casada (`firequalizer`, ±6 dB) → de-esser dinâmico só se houver sibilância → `aexciter` só se abafado → compressão leve → limitador.
+  - Cadeia (cada etapa só entra se o diagnóstico pedir): passa-alta 70 Hz → desestouro (`adeclip`) → DeepFilterNet (`00_SISTEMA/ferramentas/deepfilternet/deep-filter.exe`, ou `deep-filter` no macOS, teto de 12 dB; ou `afftdn` leve) → EQ casada (`firequalizer`, ±6 dB) → de-esser dinâmico só se houver sibilância → `aexciter` só se abafado → compressão leve → limitador.
   - Saídas: `05_audio/voz_estudio_{suave,equilibrado,intenso}.wav`, `06_previas/estudio_audio.md` (distância da referência antes e depois) e `06_previas/comparativo_estudio.mp4`. Num teste, o "equilibrado" foi de 1,76 dB para 0,47 dB de distância média.
   - Continua valendo: **perguntar** antes de usar.
 - **Cor de bruto log/RAW:** os presets do `preparar.mjs --comparar`, escolhidos pelo usuário.
@@ -271,7 +271,8 @@ Provam que os formatos aprovados continuam iguais: renderizam trechos fixos do p
 - **Caminhos dentro de filtros do FFmpeg:** use caminhos relativos (sem `C:`). O `drawtext` precisa de `fontfile` (sem fontconfig no Windows).
 - **O render copia a pasta inteira do projeto** para o pacote (no Windows o Remotion não usa link simbólico). Versões antigas do final dentro de `07_final/` e candidatos de B-roll não usados (500 MB–1 GB) atrasam todo render e prévia: guarde-os em `03_PROJETOS/_versoes-antigas/<projeto>/`.
 - **HEVC 10 bits** (comum em "arquivo leve" de câmera) decodifica só na CPU: o `preparar.mjs` levou 35 min (0,09×) num bruto 4K de 3 min. Dica para o usuário: exportar em H.264 8 bits, 24 fps, 1080×1920 ou 2160×3840 elimina essa etapa. Bruto 1440×2560 a 30 fps: `preparar.mjs --cor nenhuma` mantém resolução e fps e só recodifica.
-- Linux e macOS: diferenças e pendências em `docs/07-LINUX.md`.
+- **macOS:** instalador `00_SISTEMA/instalacao/instalar.sh` e guia `docs/01-INSTALAR-MAC.md`. Fonte dos rótulos em `scripts/lib/fonte.mjs`; sem contorno de binários (`binarios.mjs` só age no Windows); `deep-filter` sem `.exe`. Regressões: gravar os pilotos no próprio Mac (os limiares vieram do Windows).
+- Linux: diferenças e pendências em `docs/07-LINUX.md`.
 
 ## Tempos de referência (medidos numa máquina de 7,7 GB de RAM e GPU integrada; use como ordem de grandeza)
 | Formato / etapa | Medida |

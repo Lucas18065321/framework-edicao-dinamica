@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {fonteFiltro} from './lib/fonte.mjs';
 
 const MOTOR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -76,7 +77,7 @@ if (args.includes('--comparar')) {
 	const tempos = [0.25, 0.6].map((p) => (dur * p).toFixed(2));
 	const alturaTile = alvo > 1 ? 405 : 640;
 	const entradas = tempos.flatMap((t) => ['-ss', t, '-i', src]);
-	const grafos = tempos.flatMap((_, i) => nomes.map((n) => `[${i}:v]${cadeia(n)},scale=-2:${alturaTile},drawtext=fontfile='C\\:/Windows/Fonts/arial.ttf':text='${n}':x=20:y=20:fontsize=36:fontcolor=white:box=1:boxcolor=black@0.5[t${i}${n}]`));
+	const grafos = tempos.flatMap((_, i) => nomes.map((n) => `[${i}:v]${cadeia(n)},scale=-2:${alturaTile},drawtext=fontfile='${fonteFiltro()}':text='${n}':x=20:y=20:fontsize=36:fontcolor=white:box=1:boxcolor=black@0.5[t${i}${n}]`));
 	const linhas = tempos.map((_, i) => `${nomes.map((n) => `[t${i}${n}]`).join('')}hstack=inputs=${nomes.length}[l${i}]`);
 	const r = spawnSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...entradas, '-filter_complex', [...grafos, ...linhas, `${tempos.map((_, i) => `[l${i}]`).join('')}vstack=inputs=${tempos.length}`].join(';'), '-frames:v', '1', '-q:v', '3', saida], {stdio: 'inherit'});
 	if (r.status !== 0) process.exit(r.status ?? 1);

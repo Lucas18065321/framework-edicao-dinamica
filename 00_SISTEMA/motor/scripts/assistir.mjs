@@ -5,10 +5,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {fonteFiltro} from './lib/fonte.mjs';
 
 const SISTEMA = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const MODEL = path.join(SISTEMA, 'modelos', 'ggml-small.bin');
-const FONT = 'C\\:/Windows/Fonts/arial.ttf';
+const FONT = fonteFiltro();
 
 const args = process.argv.slice(2);
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);

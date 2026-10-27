@@ -45,7 +45,7 @@ Ao fechar cada vídeo, o material bom vai para a biblioteca (`biblioteca.mjs imp
 - **Pixabay:** crie a conta → [pixabay.com/api/docs](https://pixabay.com/api/docs/) → a chave aparece logado, na seção "Parameters" (`key`).
 - **Openverse** (imagens com licença aberta, inclui Wikimedia): não precisa de chave.
 
-Cole as chaves em `00_SISTEMA\motor\.env` pelo Bloco de Notas (`PEXELS_API_KEY=` e `PIXABAY_API_KEY=`). Nunca no chat.
+Cole as chaves em `00_SISTEMA\motor\.env` pelo Bloco de Notas (`PEXELS_API_KEY=` e `PIXABAY_API_KEY=`); no Mac, `open -e 00_SISTEMA/motor/.env`. Nunca no chat.
 
 **Como o Claude usa** (de dentro de `00_SISTEMA/motor`):
 ```

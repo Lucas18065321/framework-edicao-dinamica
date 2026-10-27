@@ -32,7 +32,7 @@ const proj = path.resolve(projArg);
 const pasta = path.join(proj, '04_broll', 'internet');
 fs.mkdirSync(pasta, {recursive: true});
 
-const CHROMES = ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'];
+const CHROMES = ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge', '/Applications/Chromium.app/Contents/MacOS/Chromium', 'C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'];
 const chrome = CHROMES.find((c) => fs.existsSync(c));
 if (!chrome) throw new Error('Chrome/Edge não encontrado');
 const perfil = fs.mkdtempSync(path.join(os.tmpdir(), 'captura-'));

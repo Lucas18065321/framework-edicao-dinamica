@@ -4,9 +4,9 @@ Edição de vídeo para redes sociais feita pelo **Claude Code** no seu computad
 
 Por baixo há um motor em [Remotion](https://www.remotion.dev) (vídeo feito por código), FFmpeg, Whisper local para transcrever e um conjunto de regras, validadores e agentes. Tudo isso faz o resultado sair igual vídeo após vídeo.
 
-> Funciona no **Windows 10/11**. Linux ainda não: veja [docs/07-LINUX.md](docs/07-LINUX.md).
+> Funciona no **Windows 10/11** e no **macOS**. No Mac, só o Apple Silicon com macOS 27 foi testado; Mac Intel e versões anteriores do macOS não foram testados (guia: [docs/01-INSTALAR-MAC.md](docs/01-INSTALAR-MAC.md)). Linux ainda não: veja [docs/07-LINUX.md](docs/07-LINUX.md).
 
-> **Versão beta (2026-10-23).** Os 4 formatos vêm de um motor em produção, mas esta edição pública (instalador, efeitos sonoros substitutos e regressões a partir do `pilotos.json`) ainda não foi testada numa máquina limpa. Encontrou um problema? Abra uma *issue*.
+> **Versão beta (2026-10-23).** Os 4 formatos vêm de um motor em produção, mas esta edição pública (instalador, efeitos sonoros substitutos e regressões a partir do `pilotos.json`) foi testada do zero num clone limpo só no macOS (Apple Silicon, macOS 27, com Homebrew, Node e FFmpeg já presentes). Ainda não testados: Windows limpo, Mac sem Homebrew e Mac Intel. Encontrou um problema? Abra uma *issue*.
 
 ---
 
@@ -26,7 +26,7 @@ E um quinto recurso: **`/novo-modelo`**, que treina um formato novo a partir de 
 ## Requisitos
 
 **Computador**
-- Windows 10 ou 11 (64 bits).
+- Windows 10 ou 11 (64 bits), **ou** macOS (testado só no 27, Apple Silicon; versões anteriores e Mac Intel não testados); o instalador do Mac oferece instalar o [Homebrew](https://brew.sh) se ele faltar.
 - ~10 GB livres (programas, modelos de transcrição e pacotes). Cada projeto de vídeo ocupa mais 1 a 5 GB.
 - 8 GB de RAM no mínimo. Com 8 GB, renderize um vídeo por vez.
 - Internet (instalação, fontes do vídeo, bancos de imagem).
@@ -45,13 +45,14 @@ Detalhes em [docs/03-IMAGENS-E-BROLL.md](docs/03-IMAGENS-E-BROLL.md).
 
 ## Instalação rápida (3 passos)
 
-1. **Clone o repositório** numa pasta fora do OneDrive, por exemplo `C:\Users\<você>\Videos\framework-edicao-dinamica`:
+1. **Clone o repositório** numa pasta fora do OneDrive, iCloud, Dropbox e Google Drive, por exemplo `C:\Users\<você>\Videos\framework-edicao-dinamica` (no Mac, `~/Projetos/framework-edicao-dinamica`):
    ```
    git clone https://github.com/Lucas18065321/framework-edicao-dinamica.git
    ```
    (Sem terminal? Use o GitHub Desktop ou peça ao Claude Code. Passo a passo em [docs/01-INSTALAR.md](docs/01-INSTALAR.md).)
 2. **Dê duplo clique em `00_SISTEMA\instalacao\INSTALAR.bat`.** Ele instala Node.js, FFmpeg e os pacotes, baixa os modelos e confere tudo. Leva de 15 a 40 minutos, conforme a internet.
-3. **Preencha o que o instalador abrir no Bloco de Notas:** as chaves de API (opcionais, `.env`) e a sua marca (`marca.json`). No fim aparece uma tabela OK/FALTA.
+   **No Mac:** na raiz do repositório, rode `bash 00_SISTEMA/instalacao/instalar.sh` (ou dê duplo clique em `00_SISTEMA/instalacao/INSTALAR.command`). Se faltar o Homebrew, ele pergunta `s/N` antes de instalar (ou use `--instalar-homebrew`; sem terminal, só funciona se o `sudo` não pedir senha; com terminal, a senha do Mac é pedida pelo instalador do Homebrew). Passo a passo e problemas comuns: [docs/01-INSTALAR-MAC.md](docs/01-INSTALAR-MAC.md).
+3. **Preencha o que o instalador abrir no Bloco de Notas:** as chaves de API (opcionais, `.env`) e a sua marca (`marca.json`). No Mac o instalador não abre nada: abra o `.env` e o `marca.json` você mesmo com `open -e 00_SISTEMA/motor/.env` e `open -e 02_BIBLIOTECA/kit/marca/marca.json`. No fim aparece uma tabela OK/AVISO/FALTA.
 
 ## Como usar (3 passos)
 
@@ -71,7 +72,7 @@ CLAUDE.md                   manual do motor (o Claude lê sozinho ao abrir a pas
 .claude/agents/             agentes: decupador, montador, revisor-de-video, diretor-paper-vox, analista-de-referencias
 docs/                       documentação para você (instalar, como funciona, imagens, regras, boas práticas)
 00_SISTEMA/motor/           o motor: Remotion (src/) + scripts Node (scripts/)
-00_SISTEMA/instalacao/      INSTALAR.bat, instalar.ps1, dependencias.json
+00_SISTEMA/instalacao/      INSTALAR.bat, instalar.ps1 (Windows); instalar.sh, INSTALAR.command (macOS); dependencias.json
 00_SISTEMA/ferramentas/     dicionário pt-BR, glossário, DeepFilterNet (baixado)
 00_SISTEMA/modelos/         modelos do Whisper e de ruído (baixados pelo instalador)
 00_SISTEMA/regressao/       testes que provam que os formatos não mudaram
@@ -89,13 +90,14 @@ Dentro de cada projeto: `01_bruto` · `02_analise` · `03_roteiro` · `04_broll/
 
 | Documento | O que tem |
 |---|---|
-| [01 - Instalar](docs/01-INSTALAR.md) | passo a passo para leigo e resolução de problemas |
+| [01 - Instalar](docs/01-INSTALAR.md) | passo a passo para leigo e resolução de problemas (Windows) |
+| [01 - Instalar no macOS](docs/01-INSTALAR-MAC.md) | Homebrew, instalador do Mac, o que muda e problemas comuns |
 | [02 - Como funciona](docs/02-COMO-FUNCIONA.md) | do bruto ao final: etapas, aprovações, agentes |
 | [03 - Imagens e B-roll](docs/03-IMAGENS-E-BROLL.md) | fotos suas, bancos grátis, Google Flow, Gemini, ChatGPT, Higgsfield |
 | [04 - Treinar novo formato](docs/04-TREINAR-NOVO-FORMATO.md) | como o `/novo-modelo` cria um formato a partir de referências |
 | [05 - Regras imutáveis](docs/05-REGRAS-IMUTAVEIS.md) | o que não mexer, e por quê |
 | [06 - Boas práticas](docs/06-BOAS-PRATICAS.md) | gravação, organização, uso do Claude, custos, backup, segurança |
-| [07 - Linux](docs/07-LINUX.md) | o que falta para rodar fora do Windows |
+| [07 - Linux](docs/07-LINUX.md) | o que falta para rodar no Linux |
 
 ---
 

@@ -13,6 +13,8 @@ let cache = null;
 
 export const binariosRemotion = (MOTOR) => {
 	if (cache) return cache;
+	// macOS e Linux: o compositor do pacote roda normalmente (o bloqueio é só do Windows); nada a ajustar.
+	if (process.platform !== 'win32') return (cache = []);
 	const pacote = path.join(MOTOR, 'node_modules', '@remotion', 'compositor-win32-x64-msvc');
 	const teste = spawnSync(path.join(pacote, 'ffmpeg.exe'), ['-hide_banner', '-version'], {encoding: 'utf8'});
 	if (teste.status === 0) return (cache = []);

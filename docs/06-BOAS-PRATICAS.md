@@ -60,11 +60,11 @@ O que faz a diferença entre um vídeo que sai em 1 hora e um que leva 1 dia.
 - **O framework (suas regras, guias, ajustes):** faça um **fork** no GitHub e mantenha as suas mudanças nele (`git commit` + `git push`, ou pelo GitHub Desktop). Um commit por mudança, com uma frase do que mudou. Mudou o motor? Commit só depois das regressões passarem.
 - **Os seus vídeos:** `03_PROJETOS/` não vai para o Git (é grande e é privado). Copie pelo menos `01_bruto/` e `07_final/` de cada vídeo para um HD externo ou para a nuvem.
 - **O `.env`:** guarde as chaves num gerenciador de senhas. Se perder, gere chaves novas nos sites.
-- **Reinstalar em outra máquina:** clone o seu fork e rode o `INSTALAR.bat` de novo. Ele baixa tudo e confere pelo sha256.
+- **Reinstalar em outra máquina:** clone o seu fork e rode o `INSTALAR.bat` de novo (no Mac, `bash 00_SISTEMA/instalacao/instalar.sh`). Ele baixa tudo e confere pelo sha256.
 
 ## 6. Segurança
 
-- **Chaves só no `.env`**, pelo Bloco de Notas. Nunca no chat, nunca num print.
+- **Chaves só no `.env`**, pelo Bloco de Notas (no Mac, `open -e`). Nunca no chat, nunca num print.
 - Se uma chave vazar (print, chat, commit), **apague a chave no site** e gere outra.
 - Antes de cada `git push`, confira a lista de arquivos: nada de `.env`, brutos ou finais. O `.gitignore` bloqueia, mas confira.
 - **Leia o que o Claude pede para aprovar.** Download, gasto, envio para a nuvem: ele pergunta antes; não aprove no automático.

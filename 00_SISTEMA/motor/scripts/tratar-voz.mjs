@@ -7,6 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
+import {fonteFiltro} from './lib/fonte.mjs';
 
 const args = process.argv.slice(2);
 const proj = path.resolve(args[0] ?? '');
@@ -88,7 +89,7 @@ if (args.includes('--comparar')) {
 		? ['original', 'suave', 'forte']
 		: args[args.indexOf('--comparar') + 1].split(',');
 	const t0 = '3', dur = '12';
-	const font = "fontfile='C\\:/Windows/Fonts/arialbd.ttf'";
+	const font = `fontfile='${fonteFiltro(true)}'`;
 	const card = (txt) => `color=c=0x111111:s=1080x1920:d=${dur}:r=30,drawtext=${font}:text='${txt}':fontcolor=white:fontsize=100:x=(w-tw)/2:y=(h-th)/2`;
 	const dest = path.join(proj, '06_previas', `comparativo_voz_${lista.join('-')}.mp4`);
 	fs.mkdirSync(path.dirname(dest), {recursive: true});

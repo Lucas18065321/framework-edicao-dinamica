@@ -2,6 +2,8 @@
 
 Passo a passo para quem nunca usou terminal. Tempo total: 30 a 60 minutos, a maior parte esperando downloads.
 
+> **Está num Mac?** Este guia é do Windows. Use o [01-INSTALAR-MAC.md](01-INSTALAR-MAC.md).
+
 ## Antes de começar
 
 - **Windows 10 ou 11**, 64 bits, com ~10 GB livres e 8 GB de RAM ou mais.
